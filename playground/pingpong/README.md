@@ -12,7 +12,7 @@
 go run server/server.go
 go run client/clients.go
 ```
-change the data minimization technique in the ```server/server.go``` interceptor function.
+change the data minimization technique in the [```server/server.go```](server/server.go) interceptor function.
 
 ## 🥸 Data minimization opions 
 - reduction
