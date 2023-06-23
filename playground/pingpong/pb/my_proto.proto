@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "pb/";
+
+service PingPong {
+  rpc SayHello(HelloRequest) returns (HelloReply) {}
+}
+
+message HelloRequest { string name = 1; }
+
+message HelloReply {
+  string street = 2;
+  int32 number = 3;
+}
