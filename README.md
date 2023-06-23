@@ -17,3 +17,7 @@ Changes to server/main.go:
 - removed existing interceptors
 - added own interceptor
 - added own selector.MatchFunc
+
+### /pingpong
+Simple example for how to modify the server's response using a gRPC interceptor.
+Implements data minimzation in forms of reduction, noising & generalization.
