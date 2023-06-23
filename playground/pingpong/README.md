@@ -18,6 +18,7 @@ change the data minimization technique in the [```server/server.go```](server/se
 - reduction
 - noising
 - generalization
+
 A reduced result looks like this:
 ```
 2023/06/23 18:39:08 Message from server: 
