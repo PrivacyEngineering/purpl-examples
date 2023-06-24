@@ -4,11 +4,11 @@ import (
 	"context"
 	"log"
 	"net"
-	"strings"
 
 	"example.com/m/v2/pb"
 	"golang.org/x/exp/rand"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 )
 
 type server struct {
@@ -45,11 +45,24 @@ func interceptor(
 		return nil, err
 	}
 
-	if r, ok := req.(*pb.HelloRequest); ok && strings.Contains(r.Name, "badclient") {
-		if hr, ok := h.(*pb.HelloReply); ok {
-			//hr.Number = reduceNumber(hr.Number)	// uncomment this line to reduce
-			hr.Number = noiseNumber(hr.Number) // uncomment this line to noise
-			// hr.Number = generalizeNumber(hr.Number) // uncomment this line to generalize
+	// if r, ok := req.(*pb.HelloRequest); ok && strings.Contains(r.Name, "badclient") {
+	// 	if hr, ok := h.(*pb.HelloReply); ok {
+	// 		//hr.Number = reduceNumber(hr.Number)	// uncomment this line to reduce
+	// 		hr.Number = noiseNumber(hr.Number) // uncomment this line to noise
+	// 		// hr.Number = generalizeNumber(hr.Number) // uncomment this line to generalize
+	// 	}
+	// }
+
+	if md, ok := metadata.FromIncomingContext(ctx); ok {
+		if token := md.Get("authorization"); len(token) > 0 {
+			log.Printf("Token: %s", token[0])
+			if token[0] == "badtoken" {
+				if hr, ok := h.(*pb.HelloReply); ok {
+					//hr.Number = reduceNumber(hr.Number)	// uncomment this line to reduce
+					hr.Number = noiseNumber(hr.Number) // uncomment this line to noise
+					// hr.Number = generalizeNumber(hr.Number) // uncomment this line to generalize
+				}
+			}
 		}
 	}
 

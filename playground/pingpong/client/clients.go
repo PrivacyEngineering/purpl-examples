@@ -7,6 +7,12 @@ import (
 
 	"example.com/m/v2/pb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
+)
+
+const (
+	goodToken = "goodtoken"
+	badToken  = "badtoken"
 )
 
 func main() {
@@ -19,7 +25,8 @@ func main() {
 	c := pb.NewPingPongClient(conn)
 
 	// Good Client
-	response, err := c.SayHello(context.Background(), &pb.HelloRequest{Name: "goodclient"})
+	ctx := metadata.AppendToOutgoingContext(context.Background(), "authorization", goodToken)
+	response, err := c.SayHello(ctx, &pb.HelloRequest{Name: "goodclient"})
 	if err != nil {
 		log.Fatalf("Error on say hello: %v", err)
 	}
@@ -29,7 +36,8 @@ func main() {
 	time.Sleep(1 * time.Second)
 
 	// Bad Client
-	response, err = c.SayHello(context.Background(), &pb.HelloRequest{Name: "badclient"})
+	ctx = metadata.AppendToOutgoingContext(context.Background(), "authorization", badToken)
+	response, err = c.SayHello(ctx, &pb.HelloRequest{Name: "badclient"})
 	if err != nil {
 		log.Fatalf("Error on say hello: %v", err)
 	}
