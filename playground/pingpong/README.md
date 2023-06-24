@@ -5,7 +5,7 @@
 | goodclient | sends request to server |
 | badclient | sends request to server |
 | server | sends an address as response |
-| interceptor | minimizes the address depending on the client name |
+| interceptor | minimizes the address depending on the client token |
 
 ## 🧪 Try it
 ```
