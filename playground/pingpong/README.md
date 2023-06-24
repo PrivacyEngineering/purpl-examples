@@ -50,5 +50,5 @@ A generalized (floored to the lower end of it's 10s-interval, e.g. 135 -> 131 or
 
 
 ## 🧭 Rodamap
-- use proper attribute for minimzation decision (probably JWT)
+- use proper JWT as attribute for minimzation decision
 - ...
