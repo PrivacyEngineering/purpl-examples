@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	goodToken = "goodtoken"
-	badToken  = "badtoken"
+	goodToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd2VkIjpbIlN0cmVldCIsIk51bWJlciJdfQ.hpcTmawTYz_FhbIOV3fDiQihD2CHqtRG0hYqmqxF3jE"                   // {"allowed": ["Street", "Number"]}
+	badToken  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd2VkIjpbIlN0cmVldCJdLCJtaW5pbWl6ZWQiOlsiTnVtYmVyIl19.yPv5EEPaAuKb-QEBZ0zb42Esi3h9Qy6O6s7Dq3sx0HQ" // {"allowed": ["Street"], "minimized": ["Number"]}
 )
 
 func main() {
