@@ -40,8 +40,8 @@ Our token's secret: ```none```.
 
 Right now our JWTs look like this:
 
+### 🧳 payload for goodToken:
 ```
-payload for goodToken:
 {
  	"policy": {
  	  "allowed": {
@@ -61,8 +61,10 @@ payload for goodToken:
  	"exp": 1688843806,
  	"iss": "test"
 }
+```
 
-payload for badToken:
+### 🧳 payload for badToken:
+```
 {
  	"policy": {
  	"allowed": {},
