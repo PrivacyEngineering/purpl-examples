@@ -11,6 +11,9 @@ service PingPong {
 message HelloRequest { string name = 1; }
 
 message HelloReply {
-  string street = 2;
-  int32 number = 3;
+  string name = 2;
+  string phoneNumber = 3;
+  string street = 4;
+  int32 age = 5;
+  string sex = 6;
 }

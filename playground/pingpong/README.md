@@ -51,15 +51,49 @@ A generalized (floored to the lower end of it's 10s-interval, e.g. 135 -> 131 or
 
 Check and generate them here: [jwt.io](https://jwt.io/).
 
-Our token's secret: ```gpt-256-bit-secret```.
+Our token's secret: ```none```.
 
 Right now our JWTs look like this:
 
 ```
-const (
-	goodToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd2VkIjpbIlN0cmVldCIsIk51bWJlciJdfQ.hpcTmawTYz_FhbIOV3fDiQihD2CHqtRG0hYqmqxF3jE"                   // {"allowed": ["Street", "Number"]}
-	badToken  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd2VkIjpbIlN0cmVldCJdLCJtaW5pbWl6ZWQiOlsiTnVtYmVyIl19.yPv5EEPaAuKb-QEBZ0zb42Esi3h9Qy6O6s7Dq3sx0HQ" // {"allowed": ["Street"], "minimized": ["Number"]}
-)
+payload for goodToken:
+{
+ 	"policy": {
+ 	  "allowed": {
+ 		"name": "string",
+ 		"sex": "string"
+ 	  },
+ 	  "generalized": {
+ 		"phoneNumber": "string"
+ 	  },
+ 	  "noised": {
+ 		"age": "int"
+ 	  },
+ 	  "reduced": {
+ 		"street": "string"
+ 	  }
+ 	},
+ 	"exp": 1688843806,
+ 	"iss": "test"
+}
+
+payload for badToken:
+{
+ 	"policy": {
+ 	"allowed": {},
+ 	"generalized": {
+ 		"age": "int",
+ 		"name": "string",
+ 		"phoneNumber": "string",
+ 		"sex": "string",
+ 		"street": "string"
+ 	},
+ 	"noised": {},
+   	"reduced": {}
+ 	},
+ 	"exp": 1688483421,
+ 	"iss": "test"
+}
 ```
 
 
