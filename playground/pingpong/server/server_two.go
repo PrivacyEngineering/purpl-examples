@@ -6,7 +6,6 @@ import (
 	"net"
 
 	"example.com/m/v2/pb"
-	"github.com/golang-jwt/jwt"
 
 	"google.golang.org/grpc"
 
@@ -16,18 +15,6 @@ import (
 
 type server struct {
 	pb.UnimplementedPingPongServer
-}
-
-// CustomClaims is our custom metadata
-type CustomClaims struct {
-	Policy struct {
-		Allowed     map[string]string `json:"allowed"`
-		Generalized map[string]string `json:"generalized"`
-		Noised      map[string]string `json:"noised"`
-		Reduced     map[string]string `json:"reduced"`
-	} `json:"policy"`
-
-	jwt.StandardClaims
 }
 
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
