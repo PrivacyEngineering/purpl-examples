@@ -17,6 +17,7 @@ type server struct {
 	pb.UnimplementedPingPongServer
 }
 
+// Send a message containing name, phone number, street, age and sex
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	return &pb.HelloReply{Name: "Ken Guru", PhoneNumber: "+0123456789", Street: "Straße des 17 Juni", Age: 35, Sex: "male"}, nil
 }
@@ -28,7 +29,7 @@ func main() {
 	}
 
 	s := grpc.NewServer(
-		grpc.UnaryInterceptor(purposelimiter.UnaryServerInterceptor()),
+		grpc.UnaryInterceptor(purposelimiter.UnaryServerInterceptor()), // <--- added interceptor
 	)
 
 	pb.RegisterPingPongServer(s, &server{})
