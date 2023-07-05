@@ -1,0 +1,38 @@
+{
+  "services": [
+    {
+      "service1": {
+        "allowed": {
+          "name": "string",
+          "sex": "string",
+          "age": "int",
+          "phoneNumber": "string",
+          "street": "string"
+        },
+        "generalized": {},
+        "noised": {},
+        "reduced": {}
+      },
+      "service2": {
+        "allowed": {
+          "name": "string",
+          "sex": "string"
+        },
+        "generalized": {
+          "age": "int"
+        },
+        "noised": {},
+        "reduced": {
+          "phoneNumber": "string",
+          "street": "string"
+        }
+      },
+      "service3": {
+        "allowed": {},
+        "generalized": {},
+        "noised": {},
+        "reduced": {}
+      }
+    }
+  ]
+}

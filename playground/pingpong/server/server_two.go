@@ -10,7 +10,8 @@ import (
 	"google.golang.org/grpc"
 
 	// contribution:
-	"github.com/louisloechel/purposelimiter"
+	// "github.com/louisloechel/purposelimiter"
+	purposelimiter "github.com/louisloechel/jwt-go-purposelimiter"
 )
 
 type server struct {

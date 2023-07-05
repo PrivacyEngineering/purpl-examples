@@ -15,6 +15,7 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
@@ -69,7 +70,7 @@ func interceptor(
 	if md, ok := metadata.FromIncomingContext(ctx); ok {
 		if token := md.Get("authorization"); len(token) > 0 {
 			tkn, err := jwt.ParseWithClaims(token[0], &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
-				return []byte("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0nZJVCy1saJr1ZbdCuQcztKlb/VdnyjqtNXEabRop4VbieAhtp9HpYEXVELy32LOx7H+yzc2q5ehVh0QyfOa33arwLiu9yuZZk00F83TP6RpXxysEH92lD4knAlUBm73t+IGrwFaRiA5Yt2ZtKOUvhzp0yRgRJfeXpwBxCRzxhuMP5PI2yds6nfdYml2ksXf0pdTkphwAIebQ5A7Sj53qIxR09fHZ01pUgd6S+Bl4pg6J/EEgJyZrA/4I12nuIWSCAlLlb/t7b6ExL/EdeXvIUB7ytjHfwpyZ5qRqHAa6lcZVYNk5xx5CHo+nCc4ayngDotl20V5wmQSPYbVxD/vyQIDAQAB"), nil
+				return []byte(""), nil
 			})
 
 			// -------------------------
@@ -101,21 +102,26 @@ func interceptor(
 			// ! Validation not working !
 			// -------------------------
 
-			// Invoke ProtoReflect
-			reflectedMsg := h.(*pb.HelloReply).ProtoReflect()
+			// Check if the response is a proto.Message
+			msg, ok := h.(proto.Message)
+			if !ok {
+				return nil, fmt.Errorf("response is not a proto.Message")
+			}
+
+			// Invoke ProtoReflect() to get a protoreflect.Message
+			reflectedMsg := msg.ProtoReflect()
 
 			// Declare a slice to store field names
 			var fieldNames []string
 
 			reflectedMsg.Range(func(fd protoreflect.FieldDescriptor, v protoreflect.Value) bool {
-				name, err := getLastPart(string(fd.FullName()))
+				// name, err := getLastPart(string(fd.FullName()))
+				//name := reflectedMsg.Descriptor().Fields().ByName(protoreflect.Name(string(fd.FullName()))).TextName()
+				name := fd.TextName()
+				fmt.Println("Name: ", name)
 
-				if err != nil {
-					fmt.Println("Error:", err)
-				} else {
-					fieldNames = append(fieldNames, name)
-					// fmt.Printf("Field: %s\tValue: %v\n", fd.FullName(), v)
-				}
+				fieldNames = append(fieldNames, name)
+				fmt.Printf("Appending field: %s\tValue: %v\n", &name, v)
 
 				return true
 			})
@@ -142,7 +148,6 @@ func interceptor(
 							reflectedMsg.Set(reflectedMsg.Descriptor().Fields().ByName(protoreflect.Name(field)), protoreflect.ValueOf(noiseString(reflectedMsg.Get(reflectedMsg.Descriptor().Fields().ByName(protoreflect.Name(field))).String())))
 						}
 					} else if contains(claims.Policy.Reduced, field) {
-						log.Printf("\nField: %v", field)
 						// Reduce the field
 						switch reflectedMsg.Descriptor().Fields().ByName(protoreflect.Name(field)).Kind() {
 						case protoreflect.Int32Kind:
