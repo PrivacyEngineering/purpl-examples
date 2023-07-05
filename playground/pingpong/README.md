@@ -4,12 +4,12 @@
 | ----------- | ----------- |
 | goodclient | sends request to server |
 | badclient | sends request to server |
-| server | sends an address as response |
+| server_two | sends a name, phone number, street, age and sex as response |
 | interceptor | minimizes the response depending on the client JWT |
 
 ## 🧪 Try it
 ```
-go run server/server.go
+go run server/server_two.go
 go run client/clients.go
 ```
 
