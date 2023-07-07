@@ -3,11 +3,21 @@
     {
       "service1": {
         "allowed": {
-          "name": "string",
-          "sex": "string",
-          "age": "int",
-          "phoneNumber": "string",
-          "street": "string"
+          "name": [
+            "string"
+          ],
+          "sex": [
+            "string"
+          ],
+          "age": [
+            "int"
+          ],
+          "phoneNumber": [
+            "string"
+          ],
+          "street": [
+            "string"
+          ]
         },
         "generalized": {},
         "noised": {},
@@ -15,16 +25,29 @@
       },
       "service2": {
         "allowed": {
-          "name": "string",
-          "sex": "string"
+          "name": [
+            "string"
+          ],
+          "sex": [
+            "string"
+          ]
         },
-        "generalized": {
-          "age": "int"
+        "generalized": {},
+        "noised": {
+          "age": [
+            "int",
+            "Laplace"
+          ]
         },
-        "noised": {},
         "reduced": {
-          "phoneNumber": "string",
-          "street": "string"
+          "phoneNumber": [
+            "string",
+            "5"
+          ],
+          "street": [
+            "string",
+            "3"
+          ]
         }
       },
       "service3": {

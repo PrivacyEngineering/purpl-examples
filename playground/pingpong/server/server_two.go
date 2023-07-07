@@ -11,7 +11,8 @@ import (
 
 	// contribution:
 	// "github.com/louisloechel/purposelimiter"
-	purposelimiter "github.com/louisloechel/jwt-go-purposelimiter"
+	// "github.com/louisloechel/jwt-go-purposelimiter"
+	purposelimiter "github.com/louisloechel/purpl"
 )
 
 type server struct {
@@ -29,8 +30,11 @@ func main() {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 
+	// path to public key
+	keyPath := "server/key.pem"
+
 	s := grpc.NewServer(
-		grpc.UnaryInterceptor(purposelimiter.UnaryServerInterceptor()), // <--- added interceptor
+		grpc.UnaryInterceptor(purposelimiter.UnaryServerInterceptor(keyPath)), // <--- don't forget to pass public key to interceptor
 	)
 
 	pb.RegisterPingPongServer(s, &server{})
