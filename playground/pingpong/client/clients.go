@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
+	"time"
 
 	"example.com/m/v2/pb"
 	jwt "github.com/Siar-Akbayin/jwt-go-auth"
@@ -23,7 +25,7 @@ func main() {
 	// to do: check if token is expired
 
 	// generate token
-	goodToken, err := jwt.GenerateToken("client/policy.json", "service1", "client/key.pem")
+	goodToken, err := jwt.GenerateToken("policy.json", "trackingService", "key.pem")
 
 	if err != nil {
 		log.Fatalf("Error on generating token: %v", err)
@@ -32,26 +34,43 @@ func main() {
 	// Good Client
 	ctx := metadata.AppendToOutgoingContext(context.Background(), "authorization", goodToken)
 
-	response, err := c.SayHello(ctx, &pb.HelloRequest{Name: "goodclient"})
+	start := time.Now()
+	response, err := c.SayHello(ctx, &pb.HelloRequest{
+		Phone:                     "91237123",
+		StreetName:                "Marchstraße",
+		StreetNumber:              32,
+		ZipCode:                   13490,
+		City:                      "Berlin",
+		Country:                   "Germany",
+		Email:                     "veryral@gmai.com",
+		Name:                      "Mustermann",
+		CreditCardNumber:          "123123478",
+		CreditCardCvv:             234,
+		CreditCardExpirationYear:  2023,
+		CreditCardExpirationMonth: 12,
+		Age:                       43})
 
+	duration := time.Since(start).Microseconds()
+
+	fmt.Println(duration)
 	if err != nil {
-		log.Fatalf("Error on say hello: %v", err)
+		fmt.Println("Error on say hello:", err)
 	}
-	log.Printf("-------------------------")
-	log.Printf("Message from server for goodclient:	%s", response)
+	fmt.Println("-------------------------")
+	fmt.Println("Message from server for goodclient:", response)
 
 	// generate token
-	badToken, err := jwt.GenerateToken("client/policy.json", "service2", "client/key.pem")
-
-	// Bad Client
-	ctx = metadata.AppendToOutgoingContext(context.Background(), "authorization", badToken)
-
-	response, err = c.SayHello(ctx, &pb.HelloRequest{Name: "badclient"})
-
-	if err != nil {
-		log.Fatalf("Error on say hello: %v", err)
-	}
-
-	log.Printf("Message from server for badclient:	%s", response)
-	log.Printf("-------------------------")
+	//badToken, err := jwt.GenerateToken("client/policy.json", "service2", "client/key.pem")
+	//
+	//// Bad Client
+	//ctx = metadata.AppendToOutgoingContext(context.Background(), "authorization", badToken)
+	//
+	//response, err = c.SayHello(ctx, &pb.HelloRequest{Name: "badclient"})
+	//
+	//if err != nil {
+	//	log.Fatalf("Error on say hello: %v", err)
+	//}
+	//
+	//log.Printf("Message from server for badclient:	%s", response)
+	//log.Printf("-------------------------")
 }

@@ -2,17 +2,13 @@ package main
 
 import (
 	"context"
+	purposelimiter "github.com/louisloechel/purpl"
 	"log"
 	"net"
 
 	"example.com/m/v2/pb"
 
 	"google.golang.org/grpc"
-
-	// contribution:
-	// "github.com/louisloechel/purposelimiter"
-	// "github.com/louisloechel/jwt-go-purposelimiter"
-	purposelimiter "github.com/louisloechel/purpl"
 )
 
 type server struct {
@@ -21,7 +17,20 @@ type server struct {
 
 // Send a message containing name, phone number, street, age and sex
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	return &pb.HelloReply{Name: "Ken Guru", PhoneNumber: "+0123456789", Street: "Straße des 17 Juni", Age: 35, Sex: "male"}, nil
+	return &pb.HelloReply{
+		Phone:                     in.Phone,
+		StreetName:                in.StreetName,
+		StreetNumber:              in.StreetNumber,
+		ZipCode:                   in.ZipCode,
+		City:                      in.City,
+		Country:                   in.Country,
+		Email:                     in.Email,
+		Name:                      in.Name,
+		CreditCardNumber:          in.CreditCardNumber,
+		CreditCardCvv:             in.CreditCardCvv,
+		CreditCardExpirationYear:  in.CreditCardExpirationYear,
+		CreditCardExpirationMonth: in.CreditCardExpirationMonth,
+		Age:                       in.Age}, nil
 }
 
 func main() {
