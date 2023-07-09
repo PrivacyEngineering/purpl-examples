@@ -22,7 +22,6 @@ func main() {
 
 	c := pb.NewPingPongClient(conn)
 	service := (os.Args[1])
-	fmt.Println(service)
 
 	// add expiration date if token exists already
 	// to do: check if token is expired
