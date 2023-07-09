@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"example.com/m/v2/pb"
@@ -20,12 +21,14 @@ func main() {
 	defer conn.Close()
 
 	c := pb.NewPingPongClient(conn)
+	service := (os.Args[1])
+	fmt.Println(service)
 
 	// add expiration date if token exists already
 	// to do: check if token is expired
 
 	// generate token
-	goodToken, err := jwt.GenerateToken("policy.json", "trackingService", "key.pem")
+	goodToken, err := jwt.GenerateToken("policy.json", service, "key.pem")
 
 	if err != nil {
 		log.Fatalf("Error on generating token: %v", err)

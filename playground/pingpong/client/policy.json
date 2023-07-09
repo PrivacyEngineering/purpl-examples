@@ -1,60 +1,157 @@
 {
   "services": [
     {
-      "service1": {
+      "trackingService-maximal": {
         "allowed": {
-          "name": [
-            "string"
+        },
+        "generalized": {
+          "credit_card_cvv": [
+            "int",
+            "3"
           ],
-          "sex": [
-            "string"
+          "zip_code": [
+            "int",
+            "8"
           ],
-          "age": [
-            "int"
+          "city": [
+            "string",
+            "2"
           ],
-          "phoneNumber": [
-            "string"
+          "credit_card_expiration_year": [
+            "int",
+            "10"
           ],
-          "street": [
-            "string"
+          "credit_card_number": [
+            "string",
+            "5"
           ]
         },
-        "generalized": {},
-        "noised": {},
-        "reduced": {}
-      },
-      "service2": {
-        "allowed": {
-          "name": [
-            "string"
-          ],
-          "sex": [
-            "string"
-          ]
-        },
-        "generalized": {},
         "noised": {
           "age": [
+            "int",
+            "Laplace"
+          ],
+          "street_number": [
+            "int",
+            "Laplace"
+          ],
+          "street_name": [
+            "string",
+            "Laplace"
+          ],
+          "credit_card_expiration_month": [
             "int",
             "Laplace"
           ]
         },
         "reduced": {
-          "phoneNumber": [
+          "email": [
             "string",
-            "5"
+            "4"
           ],
-          "street": [
+          "country": [
+            "string", "3"
+          ],
+          "name": [
+            "string",
+            "4"
+          ],
+          "phone": [
             "string",
             "3"
           ]
         }
       },
-      "service3": {
-        "allowed": {},
-        "generalized": {},
-        "noised": {},
-        "reduced": {}
+      "trackingService": {
+        "allowed": {
+          "name": [
+            "string"
+          ],
+          "phone": [
+            "string"
+          ],
+          "street_name": [
+            "string"
+          ],
+          "street_number": [
+            "int"
+          ], 
+          "city": [
+            "string"
+          ],
+          "country": [
+            "string"
+          ],
+          "zip_code": [
+            "int"
+          ]
+        },
+        "generalized": {
+          "credit_card_cvv": [
+            "int",
+            "10"
+          ] 
+        },
+        "noised": {
+          
+        },
+        "reduced": {
+          "email": [
+            "string",
+            "4"
+          ]
+        }
+      },
+      "trackingService-minimal": {
+        "allowed": {
+          "name": [
+            "string"
+          ],
+          "phone": [
+            "string"
+          ],
+          "street_name": [
+            "string"
+          ],
+          "street_number": [
+            "int"
+          ], 
+          "city": [
+            "string"
+          ],
+          "country": [
+            "string"
+          ],
+          "zip_code": [
+            "int"
+          ],
+          "age": [
+            "int"
+          ],
+          "credit_card_cvv": [
+            "int"
+          ],
+          "email": [
+            "string",
+            "4"
+          ]
+        },
+        "generalized": {
+        },
+        "noised": {
+        },
+        "reduced": {
+        }
+      },
+      "trackingService-empty": {
+        "allowed": {
+        },
+        "generalized": {
+        },
+        "noised": {
+        },
+        "reduced": {
+        }
       }
     }
   ]
