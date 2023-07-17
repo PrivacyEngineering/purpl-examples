@@ -23,8 +23,9 @@ func main() {
 	// to do: check if token is expired
 
 	// generate token
-	goodToken, err := jwt.GenerateToken("client/policy.json", "service1", "client/key.pem")
-
+	// GenerateToken(policyPath string, serviceName string, purpose string, keyPath string, expirationInHours time.Duration)
+	goodToken, err := jwt.GenerateToken("client/policy.json", "trackingService-maximal", "purpose1", "client/key.pem", 1)
+	log.Printf("Token: %s", goodToken)
 	if err != nil {
 		log.Fatalf("Error on generating token: %v", err)
 	}
@@ -41,7 +42,7 @@ func main() {
 	log.Printf("Message from server for goodclient:	%s", response)
 
 	// generate token
-	badToken, err := jwt.GenerateToken("client/policy.json", "service2", "client/key.pem")
+	badToken, err := jwt.GenerateToken("client/policy.json", "trackingService-maximal", "purpose2", "client/key.pem", 5)
 
 	// Bad Client
 	ctx = metadata.AppendToOutgoingContext(context.Background(), "authorization", badToken)
