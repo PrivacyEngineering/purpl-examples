@@ -40,7 +40,7 @@ func main() {
 	}
 
 	// path to public key
-	keyPath := "server/key.pem"
+	keyPath := "server/public.pem"
 
 	s := grpc.NewServer(
 		grpc.UnaryInterceptor(purposelimiter.UnaryServerInterceptor(keyPath)), // <--- don't forget to pass public key to interceptor
