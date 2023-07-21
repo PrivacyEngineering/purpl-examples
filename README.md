@@ -1,4 +1,4 @@
-# PEng Group 7 - Summer term 2023
+# PEng Group 7 - Summer term 2023 - examples
 ### Topic: Hook in privacy capabilities for gRPC
 
 ## [/playground](/playground)
