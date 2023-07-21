@@ -21,3 +21,5 @@ Changes to server/main.go:
 ### [/pingpong](playground/pingpong)
 Simple example for how to modify the server's response using a gRPC interceptor.
 Implements data minimzation in forms of reduction, noising & generalization.
+
+We used this repository for eary stage evaluations and testing (in the mainly in the performance branch).
