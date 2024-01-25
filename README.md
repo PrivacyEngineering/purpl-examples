@@ -1,3 +1,7 @@
+<p align="center">
+	<img src="purpl.png" width=50" />
+</p>
+
 # purpl - examples
 **We used this repository for early stage evaluations and testing (mainly in the performance branch).**
 ## [/playground](/playground)
