@@ -1,8 +1,24 @@
-# PEng Group 7 - Summer term 2023 - examples
-### Topic: Hook in privacy capabilities for gRPC
-
+# purpl - examples
+**We used this repository for early stage evaluations and testing (mainly in the performance branch).**
 ## [/playground](/playground)
-### [/interceptors](playground/interceptors)
+In the [/playground](/playground) directory you'll find two examples showcasing the purpl-interceptor's functionality.
+
+### Example 1: [/pingpong](playground/pingpong)
+Simple example for how to modify the server's response using a gRPC interceptor.
+Implements data minimzation in forms of reduction, noising & generalization.
+
+#### 🏓 two clients, one server
+
+| who? | what? |
+| ----------- | ----------- |
+| goodclient | sends request to server |
+| badclient | sends request to server |
+| server_two | sends a name, phone number, street, age and sex as response |
+| interceptor | minimizes the response depending on the client JWT |
+
+To find out more and try it out, head over to [/pingpong](playground/pingpong).
+
+### Example 2: [/interceptors](playground/interceptors)
 Find first steps in the ./playground/interceptors directory.
 As of right now it's a modified version of the [go-grpc-middleware Repo](https://github.com/grpc-ecosystem/go-grpc-middleware/tree/v2.0.0-rc.5).
 To to run, 
@@ -18,8 +34,3 @@ Changes to server/main.go:
 - added own interceptor
 - added own selector.MatchFunc
 
-### [/pingpong](playground/pingpong)
-Simple example for how to modify the server's response using a gRPC interceptor.
-Implements data minimzation in forms of reduction, noising & generalization.
-
-**We used this repository for early stage evaluations and testing (mainly in the performance branch).**
