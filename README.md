@@ -2,10 +2,10 @@
 	<img src="purpl.png" width=50" />
 </p>
 
-# purpl - examples
+# [purpl](https://github.com/PrivacyEngineering/purpl) - examples
 **We used this repository for early stage evaluations and testing (mainly in the performance branch).**
 ## [/playground](/playground)
-In the [/playground](/playground) directory you'll find two examples showcasing the purpl-interceptor's functionality.
+In the [/playground](/playground) directory you'll find two examples showcasing the [purpl-interceptor's](https://github.com/PrivacyEngineering/purpl) functionality.
 
 ### Example 1: [/pingpong](playground/pingpong)
 Simple example for how to modify the server's response using a gRPC interceptor.
