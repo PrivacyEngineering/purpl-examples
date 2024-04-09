@@ -6,21 +6,21 @@
 **We used this repository for early stage evaluations and testing (mainly in the performance branch).**
 
 # Citation
-To cite the [preprint version of the paper](https://arxiv.org/pdf/2404.05598.pdf), please use the following BibTeX entry:
+To cite the [preprint version of the paper](https://arxiv.org/pdf/2404.05598.pdf) to appear in the Proceedings of the 24th International Conference on Web Engineering (ICWE 2024), use the following BibTeX entry:
 ```
-@misc{loechel2024hookin,
-      title={Hook-in Privacy Techniques for gRPC-based Microservice Communication}, 
+@InProceedings{loechel2024hookin,
       author={Louis Loechel and Siar-Remzi Akbayin and Elias Grünewald and Jannis Kiesel and Inga Strelnikova and Thomas Janke and Frank Pallas},
+      editor={Stefanidis, Kostas and Systa, Kari and Matera, Maristella and Heil, Sebastian and Kondylakis, Haridimos and Quintarelli, Elisa},
+      title={{Hook-in Privacy Techniques for gRPC-based Microservice Communication}}, 
       year={2024},
+      publisher="Springer Nature Switzerland",
+      address="Cham",
+      note={to appear in the Proceedings of the 24th International Conference on Web Engineering (ICWE 2024)},
       eprint={2404.05598},
       archivePrefix={arXiv},
-      primaryClass={cs.CR}
+      primaryClass={cs.CR},
 }
 ```
-or use the following reference:
-```
-Louis Loechel, Siar-Remzi Akbayin, Elias Grünewald, Jannis Kiesel, Inga Strelnikova, Thomas Janke, Frank Pallas. 2024. Hook-in Privacy Techniques for gRPC-based Microservice Communication.
-``` 
 ## [/playground](/playground)
 In the [/playground](/playground) directory you'll find two examples showcasing the [purpl-interceptor's](https://github.com/PrivacyEngineering/purpl) functionality.
 
